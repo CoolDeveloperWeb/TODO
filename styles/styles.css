@@ -1,6 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 * {
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+}
+
+.header {
+    color: #273049;
 }
 
 .main-tasks-div {
@@ -27,4 +37,25 @@
     margin-top: 10px;
     list-style: none;
     box-shadow: 0px 2px 4px 1px #9098AD;
+}
+
+.task-done {
+    background-color: #E3E9F0;
+    color: #9098AD;
+    text-decoration: line-through;
+}
+
+.add-task-button {
+    background-color: #273049;
+    color: white;
+    width: 100%;
+    border: none;
+    border-radius: 0 0 7px 7px;
+    letter-spacing: 2px;
+    padding: 5px;
+    transition: background-color 500ms ease;
+}
+
+.add-task-button:hover {
+    background-color: #7A6262;
 }
