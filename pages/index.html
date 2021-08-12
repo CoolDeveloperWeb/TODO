@@ -5,18 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/styles.css">
-    <title>Document</title>
+    <title>TODO</title>
 </head>
 <body>
-    <h1 class="header">ToDo List</h1>
-    <div class='main-tasks-div'>
-        <ul class='list-tasks'>
-            <li class="task-item">Сделать крутую тудушку</li>
-            <i class="task-item">Сказать Алине о том, что я все</li>
-            <li class="task-item">Повздыхать</li>
-        </ul>
-      
-        <button class="add-task-button">+ ADD NEW</button>
-    </div>
+    <!-- TODO: Сделать шапку, в которой будет название,  -->
+    <!-- профиль (для просмотра информации) и смена дневного и ночного режимов -->
+    <header class='main-header'>
+        <h1 class="header-title">ToDo List</h1>
+
+        <div style='display: flex; justify-content: space-between; width: 200px;'>
+            <!-- Смена цветового режима -->
+            <div class='day-night-checkbox'>
+            </div>
+
+            <!-- Профиль. При клике открывается модальное окно с информацией (Что-нить придумаем может) -->
+            <!-- Вообще можно кнопку с ссылкой на инормацию поместить в левый/правый блок -->
+            <div class='user-profile'>
+            </div>
+        </div>
+    </header>
+
+    <main class='main-block'>
+        <!-- TODO: Что-то в левый бок -->
+        <div class='left'>
+
+        </div>
+
+        <div class='main-tasks-div'>
+            <!-- TODO: Написать скрол для задач, чтобы высота списка была статичной -->
+            <!-- Так же сделать логику, чтобы выполненные задачи падали вниз -->
+            <ul class='list-tasks'>
+                <li class="task-item">Сделать крутую тудушку</li>
+                <li class="task-item">Сказать Алине о том, что я все</li>
+                <li class="task-item">Повздыхать</li>
+            </ul>
+        
+            <!-- TODO: Реализовать возможность добавления нового задания -->
+            <!-- При нажатии появляется модальное окно -->
+            <button class="add-task-button"><span class='button-plus'>+</span> ADD NEW</button>
+        </div>
+
+        <!-- TODO: Что в правый бок -->
+        <div class='right'>
+
+        </div>
+    </main>
+
+    <!-- TODO: Придумать, что можно поместить в футер -->
+    <footer>
+
+    </footer>
 </body>
 </html>
