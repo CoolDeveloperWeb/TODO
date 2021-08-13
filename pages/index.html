@@ -13,14 +13,21 @@
     <header class='main-header'>
         <h1 class="header-title">ToDo List</h1>
 
-        <div style='display: flex; justify-content: space-between; width: 200px;'>
+        <div style='display: flex; justify-content: space-between; align-items: center; width: 200px;'>
             <!-- Смена цветового режима -->
             <div class='day-night-checkbox'>
+                <input type='checkbox' id='change-color'>
+                <label for="change-color" class='label-checkbox'>
+                    <span class='circle-checkbox'>
+                        
+                    </span>
+                </label>
             </div>
 
             <!-- Профиль. При клике открывается модальное окно с информацией (Что-нить придумаем может) -->
             <!-- Вообще можно кнопку с ссылкой на инормацию поместить в левый/правый блок -->
             <div class='user-profile'>
+                <i class="fa fa-user" aria-hidden="true"></i>
             </div>
         </div>
     </header>
@@ -35,6 +42,17 @@
             <!-- TODO: Написать скрол для задач, чтобы высота списка была статичной -->
             <!-- Так же сделать логику, чтобы выполненные задачи падали вниз -->
             <ul class='list-tasks'>
+                <li class="task-item">Сделать 1 <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать 2 <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
                 <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
                 <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
             </ul>
