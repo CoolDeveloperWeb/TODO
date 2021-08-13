@@ -209,18 +209,19 @@ body {
 
 .button-plus {
     font-size: 16px;
+}
+
 
 /* Модальное окно на добавление задачи */
 
 .modal, .modal-add-task {
     position: absolute;
+    z-index: -1;
 
     opacity: 0;
 }
 
 .modal {
-    z-index: -1;
-
     height: 100%;
     width: 100%;
 
