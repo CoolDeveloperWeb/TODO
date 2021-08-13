@@ -27,7 +27,7 @@ function replaceCheckbox(taskCheckbox) {
 
 // Устанавливает обработку события change для переданного чекбокса
 function setTaskCheckedEvent(taskCheckbox) {
-    taskCheckbox.addEventListener("change", () => {
+    taskCheckbox.addEventListener('change', () => {
         taskCheckbox.checked = false;
         taskCheckbox.parentElement.classList.add('done');
         replaceCheckbox(taskCheckbox);
@@ -43,9 +43,20 @@ function setTasksCheckedEvent() {
     }
 }
 
+// Устанавливает событие смены ночного и дневного режима
+function setChangeDayNightCheckedEvent() {
+    const toggleDayNight = document.querySelector('#change-color');
+
+    toggleDayNight.addEventListener('change', () => {
+        console.log(toggleDayNight.nextElementSibling.firstElementChild.classList.toggle('night'));
+    });
+}
+
+
 // Подготавливает все события на странице
 function prepareEvent() {
     setTasksCheckedEvent();
+    setChangeDayNightCheckedEvent();
 }
 
 prepareEvent();
