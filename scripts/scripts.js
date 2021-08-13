@@ -1,10 +1,10 @@
 // Создает новый элемент с переданными параметрами. parentNode и tag - являются обязательными
-function createElement(parentNode, tag, classList, attribute) {
+function createElement(parentNode, tag, classList, attributes) {
     const element = document.createElement(tag);
 
     if (classList) element.classList.add(...classList);
 
-    if (attribute) element.setAttribute(...attribute);
+    if (attributes) Object.entries(attributes).forEach(attribute => element.setAttribute(...attribute));
 
     parentNode.appendChild(element);
     
@@ -17,7 +17,12 @@ function replaceCheckbox(taskCheckbox) {
     taskBlock.removeChild(taskCheckbox);
 
     const block = createElement(taskBlock, 'div');
-    createElement(block, 'i', ['fa', 'fa-check'], ['aria-hidden', 'true']);
+
+    const objAttributes = {
+        'aria-hidden': 'true',
+    };
+
+    createElement(block, 'i', ['fa', 'fa-check'], {...objAttributes});
 }
 
 // Устанавливает обработку события change для переданного чекбокса
