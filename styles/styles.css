@@ -47,6 +47,7 @@ body {
     background-color: #273049;
 }
 
+
 /* Главный блок */
 
 .main-block {
@@ -95,12 +96,20 @@ body {
     align-items: center;
 
     text-align: center;
+
+    list-style: none;
 }
+
+
+/* Задание */
 
 .task-item {
     width: 86%;
     padding: 10px 5%;
     margin-top: 10px;
+
+    display: flex;
+    justify-content: space-between;
 
     text-align: left;
     
@@ -109,11 +118,20 @@ body {
     box-shadow: 0px 2px 4px 1px #9098AD;
 }
 
-.task-done {
+.done {
     color: #9098AD;
-    background-color: #E3E9F0;
     text-decoration: line-through;
+
+    background-color: #f2f5f7;
+    box-shadow: none;
 }
+
+.fa.fa-check {
+    color: green;
+}
+
+
+/* Кнопка добавления задания */
 
 .add-task-button {
     position: absolute;
