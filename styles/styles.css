@@ -90,6 +90,7 @@ body {
 }
 
 .list-tasks {
+    height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -98,6 +99,10 @@ body {
     text-align: center;
 
     list-style: none;
+
+    overflow-y: scroll;
+    scrollbar-color: #273049 #f2f5f7;
+    scrollbar-width: thin;
 }
 
 
