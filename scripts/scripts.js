@@ -1,17 +1,18 @@
+function setZIndexAndOpacity(element, zIndex, opacity) {
+    element.style.zIndex = zIndex.toString();
+    element.style.opacity = opacity;
+}
+
 function openModalWindowAddTask(modal, back) {
-    back.style.zIndex = '1';
-    back.style.opacity = 0.3;
-    modal.style.zIndex = '1';
-    modal.style.opacity = 1;
+    setZIndexAndOpacity(back, 1, 0.3);
+    setZIndexAndOpacity(modal, 1, 1);
 }
 
 function clickBackModalAddTask(modal, back) {
     const inputs = document.querySelectorAll('.item-form-add input');
-    modal.style.zIndex = '-1';
-    modal.style.opacity = 0;
-    back.style.zIndex = '-1';
-    back.style.opacity = 0;
 
+    setZIndexAndOpacity(modal, -1, 0);
+    setZIndexAndOpacity(back, -1, 0);
     
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].value = '';
@@ -29,7 +30,7 @@ function addEventClickAddTask() {
 
 function changeInput(input) {
     const label = input.nextElementSibling;
-    console.log(label);
+
     if (input.value.length) {
         label.classList.add('full-text');
     } else {
@@ -44,9 +45,6 @@ function addEventChangeInput() {
         inputs[i].addEventListener('change', () => changeInput(inputs[i]));
     }
 }
-
-addEventClickAddTask();
-addEventChangeInput();
 
 // Создает новый элемент с переданными параметрами. parentNode и tag - являются обязательными
 function createElement(parentNode, tag, classList, attributes) {
@@ -107,6 +105,8 @@ function setChangeDayNightCheckedEvent() {
 function prepareEvent() {
     setTasksCheckedEvent();
     setChangeDayNightCheckedEvent();
+    addEventClickAddTask();
+    addEventChangeInput();
 }
 
 prepareEvent();
