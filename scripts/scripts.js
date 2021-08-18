@@ -1,4 +1,5 @@
 function setZIndexAndOpacity(element, zIndex, opacity) {
+    // console.log(element);
     element.style.zIndex = zIndex.toString();
     element.style.opacity = opacity;
 }
@@ -8,7 +9,9 @@ function openModalWindowAddTask(modal, back) {
     setZIndexAndOpacity(modal, 1, 1);
 }
 
-function clickBackModalAddTask(modal, back) {
+function closeModalAddTask(modal, back) {
+    console.log(modal)
+    console.log(back);
     const inputs = document.querySelectorAll('.item-form-add input');
 
     setZIndexAndOpacity(modal, -1, 0);
@@ -19,13 +22,11 @@ function clickBackModalAddTask(modal, back) {
     }
 }
 
-function addEventClickAddTask() {
+function addEventClickAddTask(modal, back) {
     const buttonAdd = document.querySelector('.add-task-button');
-    const modal = document.querySelector('.modal-add-task');
-    const back = document.querySelector('.modal');
 
     buttonAdd.addEventListener('click', () => openModalWindowAddTask(modal, back));
-    back.addEventListener('click', () => clickBackModalAddTask(modal, back));
+    back.addEventListener('click', () => closeModalAddTask(modal, back));
 }
 
 function changeInput(input) {
@@ -44,6 +45,35 @@ function addEventChangeInput() {
     for (let i = 0; i < inputs.length; i++) {
         inputs[i].addEventListener('change', () => changeInput(inputs[i]));
     }
+}
+
+function clickAddTask(modal, back) {
+    const list = document.querySelector('.list-tasks');
+    const fieldNameTask = document.getElementById('name-task');
+    const record = document.createElement('li');
+    record.className = 'task-item';
+    record.textContent = fieldNameTask.value;
+    const checkBox = document.createElement('input');
+    checkBox.type = 'checkbox';
+    checkBox.className = 'task-checkbox';
+    record.append(checkBox);
+    list.append(record);
+    closeModalAddTask(modal, back);
+}
+
+function addTaskModal(modal, back) {
+    const addButton = document.querySelector('.modal-add-button');
+    addButton.addEventListener('click', () => clickAddTask(modal, back));
+}
+
+//Нужно сделать обработку полей
+function modalAddTask() {
+    const modal = document.querySelector('.modal-add-task');
+    const back = document.querySelector('.modal');
+
+    addEventClickAddTask(modal, back);
+    addEventChangeInput();
+    addTaskModal(modal, back);
 }
 
 // Создает новый элемент с переданными параметрами. parentNode и tag - являются обязательными
@@ -100,7 +130,6 @@ function setChangeDayNightCheckedEvent() {
     });
 }
 
-
 function addIcon() {
 
 }
@@ -110,13 +139,11 @@ function setBlockDiscription(element, discription) {
     const elem = document.querySelectorAll('.task-item');
 }
 
-
 // Подготавливает все события на странице
 function prepareEvent() {
     setTasksCheckedEvent();
     setChangeDayNightCheckedEvent();
-    addEventClickAddTask();
-    addEventChangeInput();
+    modalAddTask();
 }
 
 prepareEvent();
