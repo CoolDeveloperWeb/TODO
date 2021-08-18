@@ -1,5 +1,4 @@
 function setZIndexAndOpacity(element, zIndex, opacity) {
-    // console.log(element);
     element.style.zIndex = zIndex.toString();
     element.style.opacity = opacity;
 }
@@ -107,7 +106,7 @@ function replaceCheckbox(taskCheckbox) {
 function setTaskCheckedEvent(taskCheckbox) {
     taskCheckbox.addEventListener('change', () => {
         taskCheckbox.checked = false;
-        taskCheckbox.parentElement.classList.add('done');
+        taskCheckbox.parentElement.parentElement.classList.add('done');
         replaceCheckbox(taskCheckbox);
     })
 }
@@ -130,13 +129,30 @@ function setChangeDayNightCheckedEvent() {
     });
 }
 
+// Устанавливает событие клика для одного элипсиса
+function setOnClickEllipsisEvent(ellipsis) {
+    ellipsis.addEventListener('click', () => {
+        
+    });
+}
+
+
+// Устанавливает обработку клика на элипсис в заданиях
+function setOnClickEllipsisesEvent() {
+    const ellipsises = document.querySelectorAll('.fa.fa-ellipsis-v');
+
+    for(let i = 0; i < ellipsises.length; i++) {
+        setOnClickEllipsisEvent(ellipsises[i]);
+    }
+}
+
 
 // Подготавливает все события на странице
 function prepareEvent() {
     setTasksCheckedEvent();
     setChangeDayNightCheckedEvent();
     modalAddTask();
+    setOnClickEllipsisesEvent();
 }
 
 prepareEvent();
-setBlockDiscription();

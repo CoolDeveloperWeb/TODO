@@ -177,11 +177,32 @@ body {
     box-shadow: none;
 }
 
+.task-tooltip {
+    position: absolute;
+
+    height: 50px;
+    width: 100px;
+
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px 2px gray;
+}
+
+/* Потом исправить, это костыль небольшой */
+.done > .task-checkboxes-block > .fa.fa-ellipsis-v {
+    order: 1;
+}
+
+.fa.fa-check {
+    color: green;
+}
+
 .fa.fa-ellipsis-v {
     color: #273049;
 }
 
 .task-checkboxes-block {
+    position: relative;
+
     width: 40px;
     display: flex;
     align-items: center;
@@ -200,11 +221,11 @@ body {
     line-height: 40px;
     letter-spacing: 2px;
     font-weight: bold;
+    color: white;
 
     border: none;
     border-radius: 0 0 7px 7px;
     background-color: #273049;
-    color: white;
 
     transition: background-color 500ms ease;
 }
