@@ -177,22 +177,8 @@ body {
     box-shadow: none;
 }
 
-.fa.fa-minus-square-o {
-    color: gray;
-    font-size: 16px;
-}
-
-.fa.fa-plus-square-o {
-    color: gray;
-    font-size: 15px;
-}
-
-.square-wraper {
-    height: 100%;
-}
-
-.fa.fa-check {
-    color: green;
+.fa.fa-ellipsis-v {
+    color: #273049;
 }
 
 .task-checkboxes-block {
