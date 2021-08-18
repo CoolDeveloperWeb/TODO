@@ -37,13 +37,26 @@
         <div class='left'>
 
         </div>
-
+        
         <div class='main-tasks-div'>
-            <!-- TODO: Написать скрол для задач, чтобы высота списка была статичной -->
             <!-- Так же сделать логику, чтобы выполненные задачи падали вниз -->
             <ul class='list-tasks'>
-                <li class="task-item">Сделать 1 <input type="checkbox" class='task-checkbox'></li>
-                <li class="task-item">Сделать 2 <input type="checkbox" class='task-checkbox'></li>
+                <li class="task-item">Сделать 1 
+                    <div class='task-checkboxes-block'>
+                      <input type="checkbox" class='task-checkbox'>
+                        <div class='square-wraper'>
+                            <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </li>
+                <li class="task-item">Сделать 2 
+                    <div class='task-checkboxes-block'>
+                      <input type="checkbox" class='task-checkbox'>
+                      <div class='square-wraper'>
+                        <i class="fa fa-minus-square-o" aria-hidden="true"></i>
+                    </div>
+                    </div>
+                </li>
                 <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
                 <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
                 <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
@@ -57,8 +70,6 @@
                 <li class="task-item">Сделать крутую тудушку <input type="checkbox" class='task-checkbox'></li>
             </ul>
         
-            <!-- TODO: Реализовать возможность добавления нового задания -->
-            <!-- При нажатии появляется модальное окно -->
             <button class="add-task-button"><span class='button-plus'>+</span> ADD NEW</button>
         </div>
 

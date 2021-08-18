@@ -101,6 +101,16 @@ function setChangeDayNightCheckedEvent() {
 }
 
 
+function addIcon() {
+
+}
+
+
+function setBlockDiscription(element, discription) {
+    const elem = document.querySelectorAll('.task-item');
+}
+
+
 // Подготавливает все события на странице
 function prepareEvent() {
     setTasksCheckedEvent();
@@ -110,3 +120,4 @@ function prepareEvent() {
 }
 
 prepareEvent();
+setBlockDiscription();

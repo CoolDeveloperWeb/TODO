@@ -177,10 +177,30 @@ body {
     box-shadow: none;
 }
 
+.fa.fa-minus-square-o {
+    color: gray;
+    font-size: 16px;
+}
+
+.fa.fa-plus-square-o {
+    color: gray;
+    font-size: 15px;
+}
+
+.square-wraper {
+    height: 100%;
+}
+
 .fa.fa-check {
     color: green;
 }
 
+.task-checkboxes-block {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
 /* Кнопка добавления задания */
 
