@@ -112,16 +112,6 @@ body {
 }
 
 
-/* Правый блок */
-
-.right {
-    width: 15%;
-    height: 600px;
-    
-    background-color: #273049;
-}
-
-
 /* Блок заданий*/
 
 .main-tasks-div {
@@ -158,7 +148,6 @@ body {
     width: 86%;
     padding: 10px 5%;
     margin-top: 10px;
-
     display: flex;
     justify-content: space-between;
 
@@ -177,35 +166,39 @@ body {
     box-shadow: none;
 }
 
-.task-tooltip {
-    position: absolute;
-
-    height: 50px;
-    width: 100px;
-
-    background-color: #ffffff;
-    box-shadow: 0px 0px 5px 2px gray;
-}
-
-/* Потом исправить, это костыль небольшой */
-.done > .task-checkboxes-block > .fa.fa-ellipsis-v {
-    order: 1;
-}
-
 .fa.fa-check {
     color: green;
 }
 
-.fa.fa-ellipsis-v {
+.icon-task {
     color: #273049;
+
+    transition: opacity .1s linear;
+}
+
+.info-icon,
+.delete-icon {
+    width: 45%;
+    
+    text-align: center;
+}
+
+.info-icon:hover,
+.delete-icon:hover {
+    opacity: .8;
+
+    cursor: pointer;
 }
 
 .task-checkboxes-block {
-    position: relative;
+    width: 70px;
+    display: flex;
+    justify-content: space-between;
+}
 
+.icons {
     width: 40px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
 }
 
@@ -236,6 +229,22 @@ body {
 
 .button-plus {
     font-size: 16px;
+}
+
+
+/* Блок подробного описания задачи */
+
+.about-task {
+    width: 20%;
+    height: 600px;
+    
+    background-color: #273049;
+}
+
+.about-task-discription {
+    
+
+    resize: none;
 }
 
 

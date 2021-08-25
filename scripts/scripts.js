@@ -1,3 +1,18 @@
+// Тестовый масив заданий на проверку инфрормации о задании
+const tasks = [
+    {
+        id: 1,
+        name: 'Сделать 1',
+        discription: 'Что непонятного, сделать первое задание, мде',
+    },
+    {
+        id: 2,
+        name: 'Сделать 2',
+        discription: 'Что непонятного, сделать второе задание, мде',
+    },
+];
+
+
 function setZIndexAndOpacity(element, zIndex, opacity) {
     element.style.zIndex = zIndex.toString();
     element.style.opacity = opacity;
@@ -58,6 +73,25 @@ function clickAddTask(modal, back) {
     record.append(checkBox);
     list.append(record);
     closeModalAddTask(modal, back);
+}
+
+// Заполняет блок описания задачи данными.
+// Сделал для того, чтобы можно было очистить блок,
+// Передав пустые строки. Если 'display: none' сразу очищает
+// поля, то уберу эту функцию.
+function fullInfoTaskBlock(name, discription) {
+    const nameTaskBlock = document.querySelector('.about-task > .about-task-name');
+    const discriptionTaskBlock = document.querySelector('.about-task > .about-task-discription');
+
+    nameTaskBlock.value = name;
+    discriptionTaskBlock.value = discription;   
+}
+
+// Выводит подробную информацию о задании с указанным id
+function getInfoTask(id) {
+    const neededTask = tasks.find((elem) => elem.id === id);
+
+    fullInfoTaskBlock(neededTask.name, neededTask.discription);
 }
 
 function addTaskModal(modal, back) {
@@ -129,30 +163,41 @@ function setChangeDayNightCheckedEvent() {
     });
 }
 
-// Устанавливает событие клика для одного элипсиса
-function setOnClickEllipsisEvent(ellipsis) {
-    ellipsis.addEventListener('click', () => {
-        
+// Устанавливает событие клика для одного блока подробной информации о задании
+function setClickInfoTaskEvent(block) {
+    block.addEventListener('click', () => {
+        getInfoTask(parseInt(block.parentElement.parentElement.parentElement.id));
     });
 }
 
+// Устанавливает событие клика для всех блоков подробной информации о задании
+function setClickInfoTasksEvent() {
+    const infoTaskBlocks = document.querySelectorAll('.info-icon');
 
-// Устанавливает обработку клика на элипсис в заданиях
-function setOnClickEllipsisesEvent() {
-    const ellipsises = document.querySelectorAll('.fa.fa-ellipsis-v');
-
-    for(let i = 0; i < ellipsises.length; i++) {
-        setOnClickEllipsisEvent(ellipsises[i]);
+    for(let i = 0; i < infoTaskBlocks.length; i++) {
+        setClickInfoTaskEvent(infoTaskBlocks[i]);
     }
 }
 
+// Устанавливает событие клика для одного блока удаления задания
+function setClickDeleteTaskEvent() {
+
+}
+
+// Устанавливает событие клика для всех блоков удаления задания
+function setClickDeleteTasksEvent() {
+    
+}
 
 // Подготавливает все события на странице
 function prepareEvent() {
     setTasksCheckedEvent();
+    setClickDeleteTasksEvent();
+    setClickInfoTasksEvent();
+
     setChangeDayNightCheckedEvent();
+
     modalAddTask();
-    setOnClickEllipsisesEvent();
 }
 
 prepareEvent();

@@ -41,19 +41,30 @@
         <div class='main-tasks-div'>
             <!-- Так же сделать логику, чтобы выполненные задачи падали вниз -->
             <ul class='list-tasks'>
-                <li class="task-item">Сделать 1 
+                <li class="task-item" id='1'>Сделать 1 
                     <div class='task-checkboxes-block'>
-                        <input type="checkbox" class='task-checkbox'>
-                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
-                        <div class='task-tooltip'>
-                            
+                        <div class="icons">
+                            <div class='info-icon'>
+                                <i class="fa fa-info icon-task" aria-hidden="true"></i>
+                            </div>
+                            <div class='delete-icon'>
+                                <i class="fa fa-trash icon-task" aria-hidden="true"></i>
+                            </div>
                         </div>
+                        <input type="checkbox" class='task-checkbox'>
                     </div>
                 </li>
-                <li class="task-item">Сделать 2 
+                <li class="task-item" id='2'>Сделать 2 
                     <div class='task-checkboxes-block'>
+                        <div class="icons">
+                            <div class='info-icon'>
+                                <i class="fa fa-info icon-task" aria-hidden="true"></i>
+                            </div>
+                            <div class='delete-icon'>
+                                <i class="fa fa-trash icon-task" aria-hidden="true"></i>
+                            </div>
+                        </div>
                         <input type="checkbox" class='task-checkbox'>
-                        <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                     </div>
                 </li>
             </ul>
@@ -62,10 +73,10 @@
         </div>
 
         <!-- TODO: Что в правый бок -->
-        <div class='right'>
-
+        <div class='about-task'>
+            <input class='about-task-name' type="text" readonly>
+            <textarea class="about-task-discription" cols="30" rows="10" readonly></textarea>
         </div>
-
         <div class="modal">
             
         </div>
