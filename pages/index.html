@@ -8,8 +8,6 @@
     <title>TODO</title>
 </head>
 <body>
-    <!-- TODO: Сделать шапку, в которой будет название,  -->
-    <!-- профиль (для просмотра информации) и смена дневного и ночного режимов -->
     <header class='main-header'>
         <h1 class="header-title">ToDo List</h1>
 
@@ -72,10 +70,19 @@
             <button class="add-task-button"><span class='button-plus'>+</span> ADD NEW</button>
         </div>
 
-        <!-- TODO: Что в правый бок -->
-        <div class='about-task'>
-            <input class='about-task-name' type="text" readonly>
-            <textarea class="about-task-discription" cols="30" rows="10" readonly></textarea>
+        <div class='about-task hidden'>
+            <!-- Сделать возможность закрытия описания. Стили потом поделаю, это набросок -->
+            <div>
+                <p style='display: inline;'>Описание задачи</p>
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            <div class='about-task-header'>
+                <input class='about-task-name' type="text" readonly>
+                <div class='edit-task-block'>
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                </div>
+            </div>
+            <textarea class="about-task-discription" readonly></textarea>
         </div>
         <div class="modal">
             
