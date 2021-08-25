@@ -1,5 +1,5 @@
 // Тестовый масив заданий на проверку инфрормации о задании
-const tasks = [
+let tasks = [
     {
         id: 1,
         name: 'Сделать 1',
@@ -75,23 +75,45 @@ function clickAddTask(modal, back) {
     closeModalAddTask(modal, back);
 }
 
+// Скрывает блок с описанием задачи
+function setHiddenAboutTaskBlock() {
+    const aboutTaskBlock = document.querySelector('.about-task');
+    if(!aboutTaskBlock.classList.contains('hidden')) aboutTaskBlock.classList.add('hidden');
+}
+
+// Показывает блок с описанием задачи
+function setVisibleAboutTaskBlock() {
+    const aboutTaskBlock = document.querySelector('.about-task');
+    if(aboutTaskBlock.classList.contains('hidden')) aboutTaskBlock.classList.remove('hidden');
+}
+
 // Заполняет блок описания задачи данными.
 // Сделал для того, чтобы можно было очистить блок,
 // Передав пустые строки. Если 'display: none' сразу очищает
 // поля, то уберу эту функцию.
 function fullInfoTaskBlock(name, discription) {
-    const nameTaskBlock = document.querySelector('.about-task > .about-task-name');
-    const discriptionTaskBlock = document.querySelector('.about-task > .about-task-discription');
+    const nameTaskBlock = document.querySelector('.about-task .about-task-name');
+    const discriptionTaskBlock = document.querySelector('.about-task .about-task-discription');
 
     nameTaskBlock.value = name;
     discriptionTaskBlock.value = discription;   
+
+    setVisibleAboutTaskBlock();
 }
 
 // Выводит подробную информацию о задании с указанным id
 function getInfoTask(id) {
-    const neededTask = tasks.find((elem) => elem.id === id);
+    const neededTask = tasks.find(elem => (elem.id === id));
 
     fullInfoTaskBlock(neededTask.name, neededTask.discription);
+}
+
+// Удаляет задание task со страницы и с массива заданий
+function deleteTask(task) {
+    const neededId = parseInt(task.id);
+    tasks = tasks.filter(elem => (elem.id !== neededId));
+
+    task.remove();
 }
 
 function addTaskModal(modal, back) {
@@ -180,13 +202,19 @@ function setClickInfoTasksEvent() {
 }
 
 // Устанавливает событие клика для одного блока удаления задания
-function setClickDeleteTaskEvent() {
-
+function setClickDeleteTaskEvent(block) {
+    block.addEventListener('click', () => {
+        deleteTask(block.parentElement.parentElement.parentElement);
+    });
 }
 
 // Устанавливает событие клика для всех блоков удаления задания
 function setClickDeleteTasksEvent() {
-    
+    const deleteTaskBlocks = document.querySelectorAll('.delete-icon');
+
+    for(let i = 0; i < deleteTaskBlocks.length; i++) {
+        setClickDeleteTaskEvent(deleteTaskBlocks[i]);
+    }
 }
 
 // Подготавливает все события на странице

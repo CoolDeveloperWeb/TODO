@@ -236,17 +236,53 @@ body {
 
 .about-task {
     width: 20%;
-    height: 600px;
-    
-    background-color: #273049;
+    height: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.about-task-name {
+    height: 40px;
+    width: 85%;
 }
 
 .about-task-discription {
-    
+    height: 200px;
+    width: 100%;
 
     resize: none;
 }
 
+.about-task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit-task-block {
+    width: 10%;
+    height: 80%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    transition: opacity .1s linear;
+}
+
+.edit-task-block:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.fa.fa-pencil {
+    font-size: 25px;
+    color: #273049;
+}
 
 /* Модальное окно на добавление задачи */
 
