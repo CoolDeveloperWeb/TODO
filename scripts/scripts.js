@@ -4,14 +4,33 @@ let tasks = [
         id: 1,
         name: 'Сделать 1',
         discription: 'Что непонятного, сделать первое задание, мде',
+        done: false
     },
     {
         id: 2,
         name: 'Сделать 2',
         discription: 'Что непонятного, сделать второе задание, мде',
+        done: false
     },
 ];
 
+const store = {
+    tasks: [
+        {
+            id: 1
+        },
+        {
+            id: 2
+        }
+    ],
+    lastId() {
+        console.log(this.tasks);
+    }
+}
+
+function input(value) {
+    console.log(value)
+}
 
 function setZIndexAndOpacity(element, zIndex, opacity) {
     element.style.zIndex = zIndex.toString();
@@ -91,9 +110,14 @@ function setVisibleAboutTaskBlock() {
 // Сделал для того, чтобы можно было очистить блок,
 // Передав пустые строки. Если 'display: none' сразу очищает
 // поля, то уберу эту функцию.
-function fullInfoTaskBlock(name, discription) {
+function fullInfoTaskBlock(name, discription, status) {
     const nameTaskBlock = document.querySelector('.about-task .about-task-name');
     const discriptionTaskBlock = document.querySelector('.about-task .about-task-discription');
+
+    if(status) {
+        nameTaskBlock.classList.add('done-task');
+        discriptionTaskBlock.classList.add('done-task');
+    }
 
     nameTaskBlock.value = name;
     discriptionTaskBlock.value = discription;   
@@ -105,7 +129,7 @@ function fullInfoTaskBlock(name, discription) {
 function getInfoTask(id) {
     const neededTask = tasks.find(elem => (elem.id === id));
 
-    fullInfoTaskBlock(neededTask.name, neededTask.discription);
+    fullInfoTaskBlock(neededTask.name, neededTask.discription, neededTask.done);
 }
 
 // Удаляет задание task со страницы и с массива заданий
