@@ -1,17 +1,40 @@
 // Тестовый масив заданий на проверку инфрормации о задании
-let tasks = [
-    {
-        id: 1,
-        name: 'Сделать 1',
-        discription: 'Что непонятного, сделать первое задание, мде',
-    },
-    {
-        id: 2,
-        name: 'Сделать 2',
-        discription: 'Что непонятного, сделать второе задание, мде',
-    },
-];
+const state = {
+    store: {
+        tasks: [
+            {
+                id: 1,
+                name: 'Сделать 1',
+                discription: 'Что непонятного, сделать первое задание, мде',
+            },
+            {
+                id: 2,
+                name: 'Сделать 2',
+                discription: 'Что непонятного, сделать второе задание, мде',
+            },            
+        ],
 
+        lastTaskId() {
+            return this.tasks[this.tasks.length - 1].id;
+        }
+    },
+
+    mutations: {        
+        addTask(name, description) {            
+            state.store.tasks.push({
+                id: state.store.lastTaskId() + 1,
+                name: name,
+                description: description,
+            })
+        },        
+        nextId() {
+            return state.store.lastTaskId() + 1;
+        },
+        findTask(id) {
+            return state.store.tasks.find(elem => (elem.id === id));
+        }
+    }
+}
 
 function setZIndexAndOpacity(element, zIndex, opacity) {
     element.style.zIndex = zIndex.toString();
@@ -24,8 +47,6 @@ function openModalWindowAddTask(modal, back) {
 }
 
 function closeModalAddTask(modal, back) {
-    console.log(modal)
-    console.log(back);
     const inputs = document.querySelectorAll('.item-form-add input');
 
     setZIndexAndOpacity(modal, -1, 0);
@@ -61,17 +82,41 @@ function addEventChangeInput() {
     }
 }
 
+function createElement(tag, className = null, textContent = null, id = null) {
+    const element = document.createElement(tag);
+    if (className) element.classList.add(...className);
+    if (textContent) element.textContent = textContent;
+    if (id) element.id = id;
+    return element;
+}
+
+function createIconBlocks(blockIcons) {
+    const iconInfo = createElementAppendToParent(blockIcons, 'div', ['info-icon']);
+    createElementAppendToParent(iconInfo, 'i', ['fa', 'fa-info', 'icon-task'], {'aria-hidden': "true",});
+    setClickInfoTaskEvent(iconInfo);
+
+    const iconDelete = createElementAppendToParent(blockIcons, 'div', ['delete-icon']);
+    createElementAppendToParent(iconDelete, 'i', ['fa', 'fa-trash', 'icon-task'], {'aria-hidden': "true",});
+    setClickDeleteTaskEvent(iconDelete);
+}
+
+function createRecord(nameTask) {
+    const record = createElement('li', ['task-item'], nameTask, state.mutations.nextId());
+    const checkBoxesBlock = createElementAppendToParent(record, 'div', ['task-checkboxes-block']);
+    const blockIcons = createElementAppendToParent(checkBoxesBlock, 'div', ['icons']);
+    createIconBlocks(blockIcons);
+    createElementAppendToParent(checkBoxesBlock, 'input', ['task-checkbox'], {'type': 'checkbox',});
+
+    return record;
+}
+
 function clickAddTask(modal, back) {
     const list = document.querySelector('.list-tasks');
-    const fieldNameTask = document.getElementById('name-task');
-    const record = document.createElement('li');
-    record.className = 'task-item';
-    record.textContent = fieldNameTask.value;
-    const checkBox = document.createElement('input');
-    checkBox.type = 'checkbox';
-    checkBox.className = 'task-checkbox';
-    record.append(checkBox);
-    list.append(record);
+    const fieldNameTask = document.getElementById('name-task');  
+
+    list.append(createRecord(fieldNameTask.value));
+    state.mutations.addTask(fieldNameTask.value, 'описание');
+    
     closeModalAddTask(modal, back);
 }
 
@@ -103,7 +148,9 @@ function fullInfoTaskBlock(name, discription) {
 
 // Выводит подробную информацию о задании с указанным id
 function getInfoTask(id) {
-    const neededTask = tasks.find(elem => (elem.id === id));
+    const neededTask = state.mutations.findTask(id);
+    console.log(state.store.tasks);
+    console.log(id);
 
     fullInfoTaskBlock(neededTask.name, neededTask.discription);
 }
@@ -111,7 +158,7 @@ function getInfoTask(id) {
 // Удаляет задание task со страницы и с массива заданий
 function deleteTask(task) {
     const neededId = parseInt(task.id);
-    tasks = tasks.filter(elem => (elem.id !== neededId));
+    state.store.tasks = state.store.tasks.filter(elem => (elem.id !== neededId));
 
     task.remove();
 }
@@ -132,7 +179,7 @@ function modalAddTask() {
 }
 
 // Создает новый элемент с переданными параметрами. parentNode и tag - являются обязательными
-function createElement(parentNode, tag, classList, attributes) {
+function createElementAppendToParent(parentNode, tag, classList, attributes) {
     const element = document.createElement(tag);
 
     if (classList) element.classList.add(...classList);
@@ -149,13 +196,13 @@ function replaceCheckbox(taskCheckbox) {
     const taskBlock = taskCheckbox.parentElement;
     taskBlock.removeChild(taskCheckbox);
 
-    const block = createElement(taskBlock, 'div');
+    const block = createElementAppendToParent(taskBlock, 'div');
 
     const objAttributes = {
         'aria-hidden': 'true',
     };
 
-    createElement(block, 'i', ['fa', 'fa-check'], {...objAttributes});
+    createElementAppendToParent(block, 'i', ['fa', 'fa-check'], {...objAttributes});
 }
 
 // Устанавливает обработку события change для переданного чекбокса
