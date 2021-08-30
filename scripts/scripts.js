@@ -1,18 +1,7 @@
 // Тестовый масив заданий на проверку инфрормации о задании
 const state = {
     store: {
-        tasks: [
-            {
-                id: 1,
-                name: 'Сделать 1',
-                discription: 'Что непонятного, сделать первое задание, мде',
-            },
-            {
-                id: 2,
-                name: 'Сделать 2',
-                discription: 'Что непонятного, сделать второе задание, мде',
-            },            
-        ],
+        tasks: [],
 
         lastTaskId() {
             return this.tasks[this.tasks.length - 1].id;
@@ -32,7 +21,31 @@ const state = {
         },
         findTask(id) {
             return state.store.tasks.find(elem => (elem.id === id));
+        },
+
+        fullTasks() {            
+            (() => getTasksJson().then(arr => {
+                console.log(arr);
+                state.store.tasks = arr;
+                console.log(state.store.tasks);
+            }))();
+            console.log(5);
+
         }
+    }
+};
+
+async function getTasksJson() {
+    let response = await fetch('source/tasks.json');
+
+    let res = await response.json();
+    return res.tasks;
+}
+
+function fullListTasks() {
+    for (const task of state.store.tasks) {
+        console.log('l');
+        createRecord(task.name, task.id);
     }
 }
 
@@ -100,8 +113,8 @@ function createIconBlocks(blockIcons) {
     setClickDeleteTaskEvent(iconDelete);
 }
 
-function createRecord(nameTask) {
-    const record = createElement('li', ['task-item'], nameTask, state.mutations.nextId());
+function createRecord(nameTask, id) {
+    const record = createElement('li', ['task-item'], nameTask, id ?? state.mutations.nextId());
     const checkBoxesBlock = createElementAppendToParent(record, 'div', ['task-checkboxes-block']);
     const blockIcons = createElementAppendToParent(checkBoxesBlock, 'div', ['icons']);
     createIconBlocks(blockIcons);
@@ -265,7 +278,12 @@ function setClickDeleteTasksEvent() {
 }
 
 // Подготавливает все события на странице
-function prepareEvent() {
+async function prepareEvent() {
+    await state.mutations.fullTasks();
+
+    console.log(state.store.tasks);
+    fullListTasks();
+
     setTasksCheckedEvent();
     setClickDeleteTasksEvent();
     setClickInfoTasksEvent();
