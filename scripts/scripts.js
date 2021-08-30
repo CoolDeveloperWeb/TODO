@@ -23,14 +23,12 @@ const state = {
             return state.store.tasks.find(elem => (elem.id === id));
         },
 
-        fullTasks() {            
-            (() => getTasksJson().then(arr => {
-                console.log(arr);
-                state.store.tasks = arr;
-                console.log(state.store.tasks);
-            }))();
-            console.log(5);
+        lala(res) {
+            state.store.tasks = res;
+        },
 
+        async fullTasks() {                         
+            state.store.tasks = await getTasksJson();        
         }
     }
 };
@@ -42,10 +40,9 @@ async function getTasksJson() {
     return res.tasks;
 }
 
-function fullListTasks() {
-    for (const task of state.store.tasks) {
-        console.log('l');
-        createRecord(task.name, task.id);
+function fullListTasks() {    
+    for (const task of state.store.tasks) {        
+        createTask(task.name, task.id);
     }
 }
 
@@ -113,21 +110,24 @@ function createIconBlocks(blockIcons) {
     setClickDeleteTaskEvent(iconDelete);
 }
 
+function createTask(nameTask, id) {
+    const list = document.querySelector('.list-tasks');
+    list.append(createRecord(nameTask, id));
+}
+
 function createRecord(nameTask, id) {
     const record = createElement('li', ['task-item'], nameTask, id ?? state.mutations.nextId());
     const checkBoxesBlock = createElementAppendToParent(record, 'div', ['task-checkboxes-block']);
     const blockIcons = createElementAppendToParent(checkBoxesBlock, 'div', ['icons']);
     createIconBlocks(blockIcons);
     createElementAppendToParent(checkBoxesBlock, 'input', ['task-checkbox'], {'type': 'checkbox',});
-
     return record;
 }
 
 function clickAddTask(modal, back) {
-    const list = document.querySelector('.list-tasks');
     const fieldNameTask = document.getElementById('name-task');  
 
-    list.append(createRecord(fieldNameTask.value));
+    createTask(fieldNameTask.value);
     state.mutations.addTask(fieldNameTask.value, 'описание');
     
     closeModalAddTask(modal, back);
