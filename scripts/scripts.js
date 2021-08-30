@@ -1,4 +1,3 @@
-// Тестовый масив заданий на проверку инфрормации о задании
 const state = {
     store: {
         tasks: [],
@@ -149,9 +148,14 @@ function setVisibleAboutTaskBlock() {
 // Сделал для того, чтобы можно было очистить блок,
 // Передав пустые строки. Если 'display: none' сразу очищает
 // поля, то уберу эту функцию.
-function fullInfoTaskBlock(name, discription) {
+function fullInfoTaskBlock(name, discription, status) {
     const nameTaskBlock = document.querySelector('.about-task .about-task-name');
     const discriptionTaskBlock = document.querySelector('.about-task .about-task-discription');
+
+    if(status) {
+        nameTaskBlock.classList.add('done-task');
+        discriptionTaskBlock.classList.add('done-task');
+    }
 
     nameTaskBlock.value = name;
     discriptionTaskBlock.value = discription;   
@@ -165,7 +169,7 @@ function getInfoTask(id) {
     console.log(state.store.tasks);
     console.log(id);
 
-    fullInfoTaskBlock(neededTask.name, neededTask.discription);
+    fullInfoTaskBlock(neededTask.name, neededTask.discription, neededTask.done);
 }
 
 // Удаляет задание task со страницы и с массива заданий
